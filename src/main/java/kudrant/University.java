@@ -10,17 +10,34 @@ import java.util.Locale;
 /**
  * EPAM QA SE course Java Classes Main task
  */
-public class App 
+public class University
 {
     static List<Student> students = new ArrayList<>();
     static SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-    static {
+
+    public static void main( String[] args )
+    {
+        University university = new University();
+        university.initializeStudents();
+        university.showStudentsByFacultySpecified(Faculty.CS);
+        Helper.printMessage("/////////////");
+        university.showStudentsByEachFaculty();
+        Helper.printMessage("/////////////");
+        university.showStudentsByEachCourse();
+        Helper.printMessage("/////////////");
+        university.showStudentsBornAfter("1992");
+
+        Helper.printMessage("/////////////");
+        university.showStudentsByGroupSpecified(213);
+    }
+
+    private void initializeStudents() {
         try {
             students.add(new Student(1, "Ivanov", "Pyotr", "Kirillovich",
                     format.parse("01.02.2000"), "21, Beyker str", "12345678912", Faculty.CS, 1, 213));
-            students.add(new Student(2, "Petrov", "Sergey", "Kirillovich",
+            students.add(new Student(2, "Petrov", "Sergey", "Ivanovich",
                     format.parse("02.03.1999"), "22, Tverskaya str", "112233445566", Faculty.Biology, 1, 123));
-            students.add(new Student(3, "Sidorov", "Alexander", "Kirillovich",
+            students.add(new Student(3, "Sidorov", "Alexander", "Borisovich",
                     format.parse("04.05.1998"), "38, Petrovka str", "987654321001", Faculty.CS, 4, 213));
             students.add(new Student(4, "Smith", "John", "Jr",
                     format.parse("06.07.1997"), "123, Savyolovskaya str", "7777777777", Faculty.Biology, 2, 213));
@@ -34,21 +51,6 @@ public class App
         }catch (ParseException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main( String[] args )
-    {
-        App app = new App();
-        app.showStudentsByFacultySpecified(Faculty.CS);
-        Helper.printMessage("/////////////");
-        app.showStudentsByEachFaculty();
-        Helper.printMessage("/////////////");
-        app.showStudentsByEachCourse();
-        Helper.printMessage("/////////////");
-        app.showStudentsBornAfter("1992");
-
-        Helper.printMessage("/////////////");
-        app.showStudentsByGroupSpecified(213);
     }
 
     private void showStudentsByFacultySpecified(Faculty faculty) {
